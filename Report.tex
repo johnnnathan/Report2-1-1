@@ -1,0 +1,167 @@
+
+\documentclass{article}
+% packages can be deleted if not wanted
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{pgf-pie}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{lmodern}
+\usepackage{subfig}
+\usepackage{needspace}
+\usepackage{titlesec}
+\usepackage{float}   
+\usepackage{graphicx} % Required for inserting images
+
+
+\title{Project 2.1 - AI and Machine Learning
+Controlling Agents in the Unity Game Engine}
+
+\author{Deniz Derviş \\ Amir Kalantarzadeh \\ Max Nicolai \\ Alen Quiroz Engel \\ Adrian Rusu \\ Dimitrios Tsiplakis \\ Aleksandr Voloshin}
+\date{October 2024}
+\setlength{\parskip}{1em}
+\begin{document}
+
+\maketitle
+
+% --------------------INTRODUCTION----------------------
+\section{Introduction}
+\begin{flushleft}
+
+ \hspace{2em}Throughout this Project, we will study Machine Learning models from the Deep Reinforcement Learning (DRL) algorithm family within the Unity Engine environment. The primary research question we aim to answer is: How we can effectively improve upon, and add sensory capacities to the models inside Unity Engine Application?
+
+ \hspace{2em}This question is relevant to the scientific field as areas such as robotics, manufacturing, and agriculture can greatly benefit from enhancements to these types of models. Their ability to automate and improve already autonomous processes can lead to significant advancements and efficiencies
+
+\hspace{2em}An initial version of the ML-Agents, developed by members of the university, expands upon the existing ML-Agents package which is widely used in the Unity ecosphere. It contains both the models themselves and scenes in which they are able to act.
+
+\hspace{2em}We will begin by analyzing the structure of the models, then explore ways to extend their sensory capacities. Additionally, we will improve the existing senses by modifying the aforementioned code-base.
+
+\hspace{2em}In this first phase of the Project, we have been tasked with planning our actions over the coming months. Below, you will find specifications regarding the division of our tasks, our planning in the form of a gantt chart, and a section on risk analysis among others.
+
+
+\end{flushleft}
+
+% ---------------------BLOCK DIAGRAM---------------------------
+
+\section{Block Diagram}
+
+% --------------SOFTWARE COMPONENT PREPARATION-----------------------
+\section{Software Component Preparation}
+
+ \hspace{2em}This section provides an overview of the software tools and setup procedures used for the project. We used Unity as our primary environment,as has been referenced already, integrated with Python, or C\#, based ML-Agents for reinforcement learning.
+
+\subsection{Unity and ML-Agents Setup}
+ \hspace{2em}Unity serves as the platform for developing and testing our 3D environments. We used Unity version \textbf{2022.3.49f1}, which is compatible with ML-Agents. To import the ML-Agents package into our project, we cloned the source code into the Unity directory using git, and then imported certain remaining files by hand to finalize the process. After that we were able to validate our installations and make changes where they were necessary.
+
+
+
+
+
+\subsection{Version Control with Git and GitHub}
+ \hspace{2em}We used Git for version control and GitHub for collaboration. A public GitHub repository was created to host the project files and documentation. The main branch is used for stable releases whereas others will be created and used for feature implementation, testing, and other purposes.
+
+
+
+\subsection{Documentation and Guidelines}
+ \hspace{2em}We maintained a comprehensive \texttt{README} file with setup instructions and system requirements. Configuration files like \texttt{config.yaml} were also documented for easy replication of experiments.
+
+\section{Task Description}
+\begin{flushleft}
+
+\hspace{2em}The project is structured into three main phases, each building upon the previous one, to create an effective Deep Reinforcement Learning (DRL) environment for controlling agents in Unity. Below is a detailed breakdown of the tasks for each phase, outlining the necessary steps and considerations to ensure the project's success. Each task has been described to provide a comprehensive understanding of how we will integrate DRL algorithms, Unity environments, and the ML-Agents toolkit.
+
+\subsection{Phase 1: Initial Setup and Familiarization}
+
+\hspace{2em}In the first phase, we will focus on setting up the necessary software tools and familiarizing ourselves with the Unity ML-Agents environment. The objective is to ensure that all team members have the appropriate installations, configurations, and understanding of the tools before proceeding with agent training.
+
+\subsubsection{Task 1: Set Up Unity Environment}
+\hspace{2em}We will begin by installing the Unity game engine (Unity 2022.x or higher) and ensuring compatibility with the ML-Agents toolkit. We will apply for a Unity Student license if necessary, otherwise, we will use the Unity Personal license. The ML-Agents package will be configured and installed using the recommended fork from the repository:
+\begin{verbatim}
+https://github.com/DennisSoemers/ml-agents/tree/fix-numpy-release-21-branch
+\end{verbatim}
+Additionally, Python 3.10.x will be installed, and a virtual environment will be set up specifically for ML-Agents, with dependencies installed using:
+\begin{verbatim}
+python -m venv ml-agents-env
+source ml-agents-env/bin/activate
+pip install -r requirements.txt
+\end{verbatim}
+We will run an example environment, such as 3D Ball, to ensure proper installation and functionality of the setup.
+
+\subsubsection{Task 2: Familiarization with DRL Concepts}
+\hspace{2em}We will conduct research into key DRL algorithms, including Proximal Policy Optimization (PPO), Soft Actor-Critic (SAC), Deep Q-Network (DQN), and Advantage Actor-Critic (A2C). Understanding when and how to use each algorithm will be crucial, as they each have different strengths and weaknesses depending on the type of environment and tasks involved. For example, PPO is well-suited for continuous action spaces, while SAC excels in more dynamic environments.
+
+\subsubsection{Task 3: Create a GitHub Repository}
+\hspace{2em}A public GitHub repository will be created for the project, serving as a version control system for all our code. Detailed documentation will be provided for installation steps, dependencies, and troubleshooting procedures. Each team member will regularly commit code to their respective branches and merge it with the main branch after testing.
+
+\subsubsection{Task 4: Implement Initial Code Modifications}
+\hspace{2em}As part of our initial familiarization with the project environment, we will make simple code modifications to an existing ML-Agents environment. This could include changes to reward structures or agent behaviors, which will allow us to gain familiarity with making, compiling, and testing code changes within Unity.
+
+\subsection{Phase 2: DRL Algorithm Training and Custom Sensor Development}
+
+\hspace{2em}In the second phase, we will focus on training agents using DRL algorithms. Following this, we will implement custom sensors to modify how agents receive input. The goal is to experiment with how different inputs and training configurations affect agent behavior and performance.
+
+\subsubsection{Task 5: Train Agents Using DRL Algorithms}
+\hspace{2em}We will select an ML-Agents environment, such as Soccer Twos or Walker, and conduct training sessions using algorithms like PPO and SAC. Throughout these training sessions, we will adjust hyperparameters such as learning rates, batch sizes, and reward structures to optimize agent performance. We will log training durations and analyze how long it takes for agents to reach specific reward thresholds. All results will be documented and analyzed to evaluate the effectiveness of each algorithm.
+
+\subsubsection{Task 6: Develop and Integrate Custom Sensors}
+\hspace{2em}Next, we will modify the agent sensors in the Soccer Twos environment by implementing a custom input mechanism. This could include restricting the field of view to simulate more realistic vision, or developing a sound-based sensor that detects nearby objects without visual input. We will then run additional training sessions to evaluate how these modifications impact agent learning and decision-making, comparing the results with the original sensor setup.
+
+\subsubsection{Task 7: Midway Evaluation and Presentation}
+\hspace{2em}We will prepare for a midway evaluation in which we will present the modified agents, their training outcomes, and the challenges and solutions encountered during the development process. The evaluation will include a live demonstration of the agent training sessions, followed by a discussion with evaluators.
+
+\subsection{Phase 3: Performance Analysis and Final Report}
+
+\hspace{2em}In the final phase, we will conduct a detailed performance analysis, focusing on computational efficiency and scalability of the implemented solutions. Our aim is to evaluate how the algorithms and sensor modifications affect agent behavior and resource utilization.
+
+\subsubsection{Task 8: Performance Profiling and Optimization}
+\hspace{2em}We will use Unity’s built-in profiler to measure resource consumption (GPU, CPU, memory) during agent training. Additionally, we will adjust learning parameters or modify agent complexity to understand how scaling affects performance. We will investigate possible optimizations, such as tuning hyperparameters or employing early stopping to prevent overfitting.
+
+\subsubsection{Task 9: Final Report and Demonstration}
+\hspace{2em}The final report will document the project’s key findings, including a detailed explanation of algorithm performance, sensor modifications, and the impact of parameter tuning on agent behavior. We will ensure that all experiments are fully reproducible by providing comprehensive documentation. The project will culminate in a final demonstration and presentation, where we will highlight improvements made to agent performance and behavior.
+
+\subsubsection{Task 10: Risk Mitigation Strategies}
+\hspace{2em}To mitigate risks such as overfitting, underfitting, and computational challenges, we will implement strategies like regularization and dropout layers. Monitoring computational resources during training sessions will also be critical, and we will reduce the complexity of environments as needed to maintain acceptable performance. Regular GitHub updates will ensure smooth collaboration and reduce potential issues with integration.
+
+\end{flushleft}
+
+% -------------------GANTT CHART-----------------------
+\section{Gantt Chart}
+
+
+% ----------------RISK ANALYSIS--------------------------------
+\section{Risk Analysis}
+\hspace{2em}An important aspect of our future actions in the software development section of our Project is Risk Mitigation, through thorough analysis. This is involves studying academic papers about DRL algorithms, and reviewing research that discusses the complications encountered in the development and testing of such algorithms. By examining these sources, we aim to identify potential risks and complications before they affect us.
+
+\hspace{2em}A primary risk, which affects most Deep Learning algorithms is that of over-fitting or under-fitting\cite{entry5}. Over-fitting occurs when the model is too specialized, performing well under one parameter set while under-performing under other, foreign parameter sets. Conversely, under-fitting transpires when the model fails to deduce patterns sufficiently, resulting in scant performance across all parameter sets.
+
+
+
+
+% -------------------REFERENCES-------------------------
+
+\begin{thebibliography}{9}
+
+\bibitem{entry1}
+Kok-Lim Alvin Yau, Yung-Wey Chong, Celimuge Wu, \textit{Applications of Multi-Agent Deep Reinforcement Learning}, Applied Sciences, 2021.
+
+\bibitem{entry2}
+OpenAI, \textit{Dota 2 with Large Scale Deep Reinforcement Learning}, 2019.
+
+\bibitem{entry3}
+Almón-Manzano, L., Vargas, R.,  Cuadra, M. (2022). \textit{Deep Reinforcement Learning in Agents’ Training: Unity ML-Agents}. Lecture Notes in Computer Science, 391–400. https://doi.org/10.1007/978-3-031-06527-9\_39
+
+\bibitem{entry4}
+Juliani, A., Berges, V.-P., Teng, E., Cohen, A., Harper, J., Elion, C., Goy, C., Gao, Y., Henry, H., Mattar, M., \& Lange, D. (2020). Unity: A General Platform for Intelligent Agents. ArXiv:1809.02627 [Cs, Stat]. https://arxiv.org/abs/1809.02627
+
+‌\bibitem{entry5}
+Zhang, C., Vinyals, O., Munos, R., \& Bengio, S. (2018). A Study on Overfitting in Deep Reinforcement Learning. ArXiv:1804.06893 [Cs, Stat]. https://arxiv.org/abs/1804.06893
+
+‌
+‌
+\end{thebibliography}
+
+\end{document}
